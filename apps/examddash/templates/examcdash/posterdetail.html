@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}dash.css">
+    <title>Success</title>
+  </head>
+  <body>
+    <h1>Success! Welcome to the Site, {{ user.name }}</h1>
+    <a href="/">Register</a>&ensp;
+    <a href="logout">logout</a>&ensp;
+    <a href="/success">Dashboard</a>
+         {% if messages %}
+         <div class="messages">
+             {% for message in messages %}
+             <p>{{ message }}</p>
+             {% endfor %}
+         </div>
+         {% endif %}
+
+       <h3> Listing my Favorite Quotes <span> &ensp; {{ mycnt }} </span></h3>
+      <div class="myquotes">
+
+       {% for mylist in myquotes %}
+          <ul>
+             <h5> <span>{{ mylist.quotedby }}</span>
+              &emsp; {{ mylist.quote }}
+               Posted by:&ensp;</h5>
+          </ul>
+       {% endfor %}
+      </div>
+
+     </body>
+ </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}dash.css">
+    <title>Success</title>
+  </head>
+  <body>
+    <h1>Welcome, {{ user.name }}!</h1>
+    <h5>You have {{ usercnt }} pokes....</h5>
+    <a href="logout">logout</a>
+
+         {% if messages %}
+         <div class="messages">
+             {% for message in messages %}
+             <p>{{ message }}</p>
+             {% endfor %}
+         </div>
+         {% endif %}
+
+
+         <h3> Summary of Pokes </h3>
+      <div class="pokesumm">
+
+         {% for list in mypokes %}
+          <ul>
+            <h5> <span>{{ list.name}} poked you {{ list.pokenum }} times</span></h5>
+          </ul>
+          {% endfor %}
+
+      <h3> People you may want to poke: </h3>
+      <div class="myquotes">
+
+       {% for list in people %}
+          <ul>
+             <h5>
+                <span>Name: {{ list.name }}</span>
+                &ensp;<span>Alias: {{ list.alias }}</span>
+                &ensp;&ensp;<span>Email: {{ list.email}}</span>
+                &ensp;&ensp;<span>Poke History: {{ list.pokenum }}</span>
+                &ensp;&ensp;<span><a href="{% url 'examdpoke:examdpoke' id=list.id %}">Poke</a></span>
+            </h5>
+
+          </ul>
+       {% endfor %}
+      </div>
+      <h1>**********************************************************</h>
+
+
+     </body>
+ </html>

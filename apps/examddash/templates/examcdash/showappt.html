@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}dash.css">
+    <title>Success</title>
+  </head>
+  <body>
+    <h1>Hello, {{ user.name }}!  Review Appointment Detail</h1>
+    <a href="logout">logout</a>
+    <a href="/success">Dashboard</a>
+
+         {% if messages %}
+         <div class="messages">
+             {% for message in messages %}
+             <p>{{ message }}</p>
+             {% endfor %}
+         </div>
+         {% endif %}
+
+
+
+       <div class="showappt">
+          <form class="appt" action="/examcedit/{{appt.id}}" method="POST">
+             {% csrf_token %}
+
+               Current Appointment: {{ descr }}
+               &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Appointment: <input type = "text" name="appt.apttask" value="{{ descr }}">
+               <br>
+               Current Status: {{ appt.aptstatus }}
+               <span style="padding-left: 10em;"></span><select name="appt.aptstatus" value=appt.aptstatus>
+                 <option value="Missed">Missed</option>
+                 <option value="Reschedule">Reschedule</option>
+                 <option value="Completed">Completed</option>
+                 <option value="Confirmed">Confirmed</option>
+
+               </select>
+               <br>
+               <!-- <span style="padding-left: 10em;"></span>Status: &ensp;&ensp;<input type = "text" name="appt.aptstatus" value="{{ appt.aptstatus }}"> -->
+
+               <br>
+               Current Date:  {{ appt.aptdate }}
+               <span style="padding-left: 9.5em;"></span>Date:&ensp;&ensp;<input  name="appt.aptdate" value="{{ appt.aptdate|date:"Y-m-d" }}">
+               <br>
+               Current Time:  {{ appt.apttime }}
+               <span style="padding-left: 11.33em;"></span>Time:&emsp;<input name="appt.apttime" value="{{ appt.apttime|time:"g:i:s" }}">
+
+
+               <p></p>
+
+                <input type="submit" value="update Appointment">
+             <p></p>
+          </div>
+          <br>
+
+     </body>
+ </html>
